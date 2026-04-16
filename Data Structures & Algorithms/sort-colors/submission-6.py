@@ -3,15 +3,26 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        i = j = 0
-        k = len(nums) - 1
-        while j <= k:
-            if nums[j] == 2:
-                nums[j], nums[k] = nums[k], nums[j]
-                k -= 1
-            elif nums[j] == 0:
-                nums[j], nums[i] = nums[i], nums[j]
-                i += 1
-                j += 1
+        count0 = 0
+        count1 = 0
+        count2 = 0
+        for num in nums:
+            if num == 0:
+                count0 += 1
+            elif num == 1:
+                count1 += 1
             else:
-                j += 1
+                count2 += 1
+        i = 0
+        while count0:
+            nums[i] = 0
+            count0 -= 1
+            i += 1
+        while count1:
+            nums[i] = 1
+            count1 -= 1
+            i += 1
+        while count2:
+            nums[i] = 2
+            count2 -= 1
+            i += 1
